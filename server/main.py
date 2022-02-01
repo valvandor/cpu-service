@@ -1,9 +1,7 @@
-import os
-from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 
-from config import TIME_ZONE, JOB_CPU_INTERVAL_TIME
-from utils.cpu_usage import print_cpu_percent
+from config import TIME_ZONE
+from utils.sheduler import start_cpu_usage_background, stop_main_thread
 
 app = Flask(__name__)
 
@@ -14,15 +12,11 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    scheduler = BackgroundScheduler(timezone=TIME_ZONE)
-    scheduler.add_job(print_cpu_percent, 'interval', seconds=JOB_CPU_INTERVAL_TIME)
-    scheduler.start()
-    print('Press Ctrl+{0} to exit'.format('Break' if os.name == 'nt' else 'C'))
-
+    scheduler = start_cpu_usage_background(TIME_ZONE)
     try:
         # This is a web application on Flask
         app.run()
 
     except (KeyboardInterrupt, SystemExit):
         # Not strictly necessary if daemonic mode is enabled but should be done if possible
-        scheduler.shutdown()
+        stop_main_thread(scheduler)
