@@ -1,3 +1,5 @@
 # PyCharm config
 .idea/
 
+# compiled files
+__pycache__/
