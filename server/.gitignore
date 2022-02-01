@@ -3,3 +3,6 @@
 
 # compiled files
 __pycache__/
+
+# database files
+*.db
