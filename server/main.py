@@ -1,8 +1,9 @@
 import os
-import time
 import psutil
 import pytz
 from apscheduler.schedulers.background import BackgroundScheduler
+from flask import Flask
+
 
 TIME_ZONE = 'Europe/Moscow'
 CPU_SAMPLE_TIME = 4.9
@@ -20,6 +21,13 @@ def print_cpu_percent():
     print(f'Current usage_cpu {usage_cpu}%')
 
 
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Flask is working</p>"
+
+
 if __name__ == '__main__':
     scheduler = BackgroundScheduler(timezone=selected_time_zone)
     scheduler.add_job(print_cpu_percent, 'interval', seconds=JOB_CPU_INTERVAL_TIME)
@@ -27,10 +35,8 @@ if __name__ == '__main__':
     print('Press Ctrl+{0} to exit'.format('Break' if os.name == 'nt' else 'C'))
 
     try:
-        # This is here to simulate application activity (which keeps the main thread alive).
-        while True:
-            time.sleep(2.5)
-            print('The "app" is still working')
+        # This is a web application on Flask
+        app.run()
 
     except (KeyboardInterrupt, SystemExit):
         # Not strictly necessary if daemonic mode is enabled but should be done if possible
