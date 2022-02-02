@@ -1,8 +1,8 @@
 from sqlalchemy import desc
 
 from database import db_session
-from models import ContentsCpuUsage
-from schemas import ContentsCpuUsageSchema
+from .models import ContentsCpuUsage
+from .schemas import ContentsCpuUsageSchema
 
 
 class CpuUsageService:

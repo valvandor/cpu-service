@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from config import CPU_SAMPLE_TIME
 from database import engine
-from models import ContentsCpuUsage
+from web_app.models import ContentsCpuUsage
 
 
 def get_cpu_percent():

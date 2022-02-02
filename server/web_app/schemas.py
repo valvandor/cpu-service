@@ -1,7 +1,7 @@
 from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemySchema
 
-from models import ContentsCpuUsage
+from .models import ContentsCpuUsage
 
 
 class ContentsCpuUsageSchema(SQLAlchemySchema):
