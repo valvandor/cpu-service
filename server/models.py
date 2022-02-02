@@ -11,4 +11,4 @@ class ContentsCpuUsage(Base):
     time_created = Column(DateTime(timezone=True), server_default=func.now())
 
     def __repr__(self):
-        return f'<User {self.name!r}>'
+        return f'<{self.time_created} - {self.percent_usage}% \n>'
