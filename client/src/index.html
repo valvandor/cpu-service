@@ -5,12 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cpu-usage</title>
+  <style>
+    .chart {
+      width: 500px;
+      height: 250px;
+    }
+  </style>
 </head>
 <body>
-  <div id="root">
-
+  <div class="chart">
+    <canvas id="firstChart"></canvas>
   </div>
-    <canvas id="graphOne" width="600" height="400"></canvas>
-  
+  <div class="chart">
+    <canvas id="secondChart"></canvas>
+  </div>
 </body>
 </html>
