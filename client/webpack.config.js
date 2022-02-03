@@ -28,8 +28,10 @@ module.exports = {
               exclude: /node_modules/,
               use: ['babel-loader'],
           },
+          // CSS
+          { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
       ],
     },
 
-    mode: 'development'
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 }
