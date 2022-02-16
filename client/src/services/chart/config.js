@@ -18,7 +18,7 @@ const currentCpuUsageConfig = {
     plugins: {
         title: {
             display: true,
-            text: 'Chart Title'
+            text: 'Chart Title',
         },
         legend: {
           display: true,
@@ -28,9 +28,6 @@ const currentCpuUsageConfig = {
       }
     },
     scales: {
-    //     x: {
-    //         type: 'linear'
-    //     },
         y: {
             type: 'linear',
             min: 0,

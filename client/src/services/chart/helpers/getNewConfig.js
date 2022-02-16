@@ -5,9 +5,9 @@ import { getValuesFromFetchData, makeDataForChartConfig, makeConfigForChart } fr
 
 async function getNewConfig(url, incompleteData, incompleteConfig) {
   const rawData = await fetchJsonData(url);
-  const arraysOfCoordinates = await getValuesFromFetchData(rawData);
+  const [arraysOfCoordinates, currentDate] = await getValuesFromFetchData(rawData);
   const data = await makeDataForChartConfig(incompleteData, arraysOfCoordinates);
-  const config = await makeConfigForChart(incompleteConfig, data);
+  const config = await makeConfigForChart(incompleteConfig, data, currentDate);
   return config;
 };
 

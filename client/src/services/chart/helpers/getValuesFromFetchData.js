@@ -1,27 +1,35 @@
 'use strict';
+import { getDateAndTimes } from '.'
 
 /**
  * makes asynchronous parsing from fetch data
  * @param {Object} obj - promise
  * @returns {Object} 
  */
-async function getValuesFromFetchData(obj) {
+async function getValuesFromFetchData(jsonData) {
   const datesArray = [];
   const percentsArray = [];
+
   try {
-    const data = obj.data.reverse()
-    
+    // display from left to right
+    const data = jsonData.data.reverse();
+
     data.forEach(element => {
-      percentsArray.push(Math.round(element['percent_usage']));
-      datesArray.push(element['time_created']);
+      let percentEl = Math.round(element['percent_usage']);
+      percentsArray.push(percentEl);
+
+      let timeEl = element['time_created'];
+      datesArray.push(timeEl);
     });
+
+    const [currentDate, timesArray] = await getDateAndTimes(datesArray);
 
     const result = {
       'percentsArray': percentsArray,
-      'datesArray': datesArray
+      'datesArray': timesArray
     };
 
-    return result;
+    return [result, currentDate];
   } catch (err) {
     console.log(err);
   }
