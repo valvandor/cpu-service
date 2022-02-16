@@ -13,28 +13,14 @@ Chart.register(
   LinearScale,
 );
 
-function getChart(url, dataForConfig, configForChart, entryPoint) {
-  fetchJsonData(url)
-    .then(
-      response => {
-        return getValuesFromFetchData(response);
-      }
-    )
-    .then(
-      values => {
-        return makeDataForChartConfig(dataForConfig, values);
-      }
-    )
-    .then(
-      data => {
-        return makeConfigForChart(configForChart, data);
-      }
-    )
-    .then(
-      config => {
-        new Chart(entryPoint, config);
-      }
-    );
+async function getChart(url, incompleteData, incompleteConfig, entryPoint) {
+  const rawData = await fetchJsonData(url);
+  const arraysOfCoordinates = await getValuesFromFetchData(rawData);
+  const data  = await makeDataForChartConfig(incompleteData, arraysOfCoordinates);
+  const config = await makeConfigForChart(incompleteConfig, data);
+
+  let newChart = new Chart(entryPoint, config);
+  return newChart;
 };
 
 export default getChart
