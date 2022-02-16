@@ -1,7 +1,7 @@
 'use strict'
 
-import { getChart } from './services';
-import { dataForCurrentCpuUsageConfig, currentCpuUsageConfig } from './config';
+import { runUpdatableChart } from './services';
+import { dataForCurrentCpuUsageConfig, currentCpuUsageConfig } from './services/chart/config';
 
 
 const targetForFirstChart = document.getElementById('firstChart');
@@ -9,4 +9,10 @@ const targetForFirstChart = document.getElementById('firstChart');
 const URL = 'http://localhost:5000/';
 const API = 'api/cpu_usage';
 
-getChart(`${URL}${API}`, dataForCurrentCpuUsageConfig, currentCpuUsageConfig, targetForFirstChart)
+
+runUpdatableChart(`${URL}${API}`, 
+                  dataForCurrentCpuUsageConfig, 
+                  currentCpuUsageConfig, 
+                  targetForFirstChart, 
+                  5000);
+

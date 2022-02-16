@@ -1,4 +1,4 @@
 'use strict'
-import { getChart } from "./chart";
+import runUpdatableChart from "./chart";
 
-export { getChart }
+export { runUpdatableChart }
