@@ -11,14 +11,25 @@ const dataForCurrentCpuUsageConfig = {
   }]
 };
 
-const currentCpuUsageConfig = {
+const dataForAverageCpuUsageConfig = {
+  // labels: [],
+  datasets: [{
+    label: 'Average CPU usage (per minute)',
+    // data: [],
+    fill: false,
+    borderColor: 'rgb(75, 92, 12)',
+    tension: 0.1
+  }]
+};
+
+const сpuUsageConfig = {
   type: 'line',
   // data: {},
   options: {
     plugins: {
         title: {
             display: true,
-            text: 'Chart Title',
+            // text: 'Chart Title',
         },
         legend: {
           display: true,
@@ -38,4 +49,4 @@ const currentCpuUsageConfig = {
 };
 
 
-export { dataForCurrentCpuUsageConfig, currentCpuUsageConfig }
+export { dataForCurrentCpuUsageConfig, dataForAverageCpuUsageConfig, сpuUsageConfig }
