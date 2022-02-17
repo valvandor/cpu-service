@@ -3,19 +3,18 @@ import os
 from flask import Flask
 from flask_cors import CORS
 
-from config import TIME_ZONE
 from database import init_db
 from utils.sheduler import start_cpu_usage_background, stop_main_thread
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 if __name__ == '__main__':
     # importing views before running app
     from web_app.views import *
 
-    scheduler = start_cpu_usage_background(TIME_ZONE)
+    scheduler = start_cpu_usage_background()
     try:
         if not os.path.exists('./sqlite.db'):
             init_db()
