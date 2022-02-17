@@ -1,18 +1,28 @@
 'use strict'
 
 import { runUpdatableChart } from './services';
-import { dataForCurrentCpuUsageConfig, currentCpuUsageConfig } from './services/chart/config';
+import { dataForCurrentCpuUsageConfig, dataForAverageCpuUsageConfig, сpuUsageConfig } from './services/chart/config';
 
 
-const targetForFirstChart = document.getElementById('firstChart');
+const targetForCurrentCpuUsageChart = document.getElementById('firstChart');
+const targetForAverageCpuUsageChart = document.getElementById('secondChart');
 
 const URL = 'http://localhost:5000/';
-const API = 'api/cpu_usage';
+const APIForCurrentCpuUsageChart = 'api/cpu_usage';
+const APIForAverageCpuUsageChart = 'api/average_cpu_usage'
+
+const intervalForUpdateCurrentCpuUsageChart = 5000
+const intervalForAverageCurrentCpuUsageChart = 60000
 
 
-runUpdatableChart(`${URL}${API}`, 
+runUpdatableChart(`${URL}${APIForCurrentCpuUsageChart}`, 
                   dataForCurrentCpuUsageConfig, 
-                  currentCpuUsageConfig, 
-                  targetForFirstChart, 
-                  5000);
+                  сpuUsageConfig, 
+                  targetForCurrentCpuUsageChart, 
+                  intervalForUpdateCurrentCpuUsageChart);
 
+runUpdatableChart(`${URL}${APIForAverageCpuUsageChart}`, 
+                  dataForAverageCpuUsageConfig, 
+                  сpuUsageConfig, 
+                  targetForAverageCpuUsageChart, 
+                  intervalForAverageCurrentCpuUsageChart);
